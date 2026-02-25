@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.program-card {
+  background: #161b22;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(48,54,61,0.8);
+  cursor: pointer;
+  transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+  font-family: 'Poppins', sans-serif;
+}
+
+.program-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(74,222,128,0.3);
+  box-shadow: 0 8px 32px rgba(74,222,128,0.06);
+}
+
+.program-card-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 14px; 
+}
+
+.program-code-badge {
+  background: linear-gradient(135deg, #4ade80, #60a5fa);
+  color: #0d1117;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 5px 13px;
+  border-radius: 8px;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.03em;
+}
+
+.program-card-name { 
+    font-size: 14px; 
+    font-weight: 600;
+     color: #cdd9e5;
+      margin-bottom: 14px; 
+      line-height: 1.5; 
+    }
+
+.program-card-meta {
+     display: flex; 
+     gap: 10px;
+      flex-wrap: wrap; 
+      font-size: 11px; 
+      color: #768390;
+       margin-bottom: 16px; 
+    }
+
+.program-card-footer { 
+    font-size: 12px;
+    color: #4ade80; 
+    font-weight: 600; 
+}
+
+.status-badge { 
+    font-size: 10px; 
+    font-weight: 600; 
+    padding: 3px 9px;
+     border-radius: 20px; 
+     font-family: 'Space Mono', monospace; 
+    }
+.status-badge.active { 
+    background: rgba(74,222,128,0.12); 
+    color: #4ade80; 
+    border: 1px solid rgba(74,222,128,0.2); 
+}
+.status-badge.phased-out { 
+    background: rgba(244,114,182,0.1); 
+    color: #f472b6; 
+    border: 1px solid rgba(244,114,182,0.2); 
+}
+.status-badge.under-review { 
+    background: rgba(250,204,21,0.1); 
+    color: #facc15; 
+    border: 1px solid rgba(250,204,21,0.2);
+ }
