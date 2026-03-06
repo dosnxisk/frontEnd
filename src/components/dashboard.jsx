@@ -27,7 +27,7 @@ const enrollmentTrend = [
 const COLORS = ["#6366f1", "#ec4899", "#f59e0b"];
 
 const weatherData = {
-  city: "Tagum CIty",
+  city: "Tagum City",
   temp: "29°C",
   condition: "Partly Cloudy",
   humidity: "72%",
@@ -41,6 +41,7 @@ export default function Dashboard() {
   ]);
   const [input, setInput] = useState("");
 
+  const username = localStorage.getItem("username") || "Lhorie";
   const withPrereqs = subjects.filter(s => s.prerequisites !== "None").length;
   const recentPrograms = programs.slice(-3).reverse();
 
@@ -70,7 +71,7 @@ export default function Dashboard() {
       <div className="dash-header">
         <div>
           <h1 className="dash-title">Dashboard</h1>
-          <p className="dash-sub">Welcome back!</p>
+          <p className="dash-sub">Welcome back, {username}!</p>
         </div>
         <div className="weather-widget">
           <span className="weather-icon">{weatherData.icon}</span>
@@ -81,7 +82,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      
       <div className="stat-cards">
         <div className="stat-card indigo">
           <div className="stat-icon"> </div>
@@ -105,7 +105,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      
       <div className="charts-row">
         <div className="chart-card">
           <h3 className="chart-title">Enrollment Trend</h3>
@@ -144,7 +143,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      
       <div className="recent-section">
         <h3 className="chart-title">Recently Added Programs</h3>
         <div className="recent-list">
@@ -161,7 +159,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      
       <button className="chat-fab" onClick={() => setChatOpen(!chatOpen)}>💬</button>
       {chatOpen && (
         <div className="chatbot">

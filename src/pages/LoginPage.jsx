@@ -2,20 +2,37 @@ import { useState } from "react";
 import "./LoginPage.css";
 
 export default function LoginPage({ onLogin }) {
-  const [view, setView] = useState("login"); // login | forgot | register
+  const [view, setView] = useState("login");
   const [form, setForm] = useState({ username: "", password: "", email: "", name: "", newPass: "" });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (form.username === "admin" && form.password === "admin123") {
-      onLogin();
-    } else {
-      setError("Invalid password");
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/login", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json" 
+        },
+        body: JSON.stringify({ email: form.username, password: form.password }),
+      });
+      const data = await response.json();
+      
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("username", data.user.name);
+        onLogin();
+        
+      } else {
+        setError("Invalid credentials");
+      }
+    } catch (err) {
+      setError("Cannot connect to server");
     }
   };
-
+  
   const handleGmail = () => {
     setSuccess("Google Sign-In is not yet connected to backend.");
   };
@@ -50,10 +67,8 @@ export default function LoginPage({ onLogin }) {
           </div>
         </div>
 
-        
         {success && <div className="login-success">{success}</div>}
 
-        
         {view === "login" && (
           <>
             <h1 className="login-title">Welcome Back!</h1>
@@ -88,7 +103,6 @@ export default function LoginPage({ onLogin }) {
               Don't have an account?{" "}
               <span onClick={() => reset("register")} className="switch-link">Sign up</span>
             </p>
-            
           </>
         )}
 
